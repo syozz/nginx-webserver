@@ -1,4 +1,7 @@
 node {
+    def registry = "ycshin/nginx-webserver"
+    def registryCredential = 'docker-hub' 
+    def dockerImage = '' 
     environment { 
         registry = "ycshin/nginx-webserver"
         registryCredential = 'docker-hub' 
