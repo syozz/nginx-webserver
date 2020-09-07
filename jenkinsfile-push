@@ -1,4 +1,8 @@
 node {
+    def registry
+    def registryCredential
+    def dockerImage
+
     environment { 
         registry = "ycshin/nginx-webserver"
         registryCredential = 'docker-hub' 
@@ -9,7 +13,7 @@ node {
      }
      stage('Building our image') { 
         sh "docker build -t ${registry}:latest ."
-        sh "docker build -t ${registry}:$BUILD_NUMBER ."
+        sh "docker build -t ${registry}:${BUILD_NUMBER} ."
     }
     stage('Deploy docker image') { 
         withDockerRegistry([ credentialsId: registryCredential, url: "" ]) {
