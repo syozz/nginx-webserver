@@ -23,4 +23,7 @@ node {
     stage('Clean docker image') {
         sh "docker rmi ${registry}"
     }
+    stage('Deploy Pods to Kubernetes') {
+        sh ""
+    }
 }
