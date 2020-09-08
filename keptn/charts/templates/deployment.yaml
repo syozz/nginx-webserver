@@ -1,0 +1,64 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-webserver
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: nginx-webserver
+  template:
+    metadata: 
+      labels:
+        app: nginx-webserver
+        ycshin: nginx
+        app.kubernetes.io/name: {{ .Values.keptn.service }}
+        app.kubernetes.io/instance: "{{ .Values.keptn.service }}-{{ .Values.keptn.deployment }}"
+        app.kubernetes.io/component: api
+        app.kubernetes.io/part-of: "{{ .Values.keptn.project }}"
+        app.kubernetes.io/managed-by: Keptn
+        app.kubernetes.io/version: {{ (split ":" .Values.image)._1 | default "latest" }}
+    spec:
+      containers:
+      - name: nginx-webserver
+        image: "{{ .Values.image }}"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          protocol: TCP
+          containerPort: 80
+        env:
+        - name: DT_CUSTOM_PROP
+          value: "version={{ .Chart.Version }} revision={{ .Release.Revision }} releasename={{ .Release.Name }} keptn_project={{ .Values.keptn.project }} keptn_service={{ .Values.keptn.service }} keptn_stage={{ .Values.keptn.stage }} keptn_deployment={{ .Values.keptn.deployment }}"
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: "metadata.name"
+        - name: DEPLOYMENT_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: "metadata.labels['deployment']"
+        - name: CONTAINER_IMAGE
+          value: "{{ .Values.image }}"
+        - name: KEPTN_PROJECT
+          value: "{{ .Chart.Name }}"
+        - name: KEPTN_STAGE
+          valueFrom:
+            fieldRef:
+              fieldPath: "metadata.namespace"
+        - name: KEPTN_SERVICE
+          value: "nginx-webserver"
+        - name: UNLEASH_SERVER_URL
+          value: "http://unleash.unleash-dev/api"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 15

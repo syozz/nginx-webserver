@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart for service nginx-webserver
+name: nginx-webserver
+version: 0.1.0
