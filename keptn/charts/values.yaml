@@ -1,2 +1,2 @@
-image: docker.io/keptnexamples/carts:23
+image: ycshin/nginx-webserver:30
 replicaCount: 2
