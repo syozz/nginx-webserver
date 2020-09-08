@@ -25,7 +25,7 @@ node {
         sh "docker rmi ${registry}"
     }
     stage('Deploy Pods to Kubernetes') {
-        #sh "kubectl set image deployment/${servicename} ${servicename}=${registry}:${BUILD_NUMBER} --record"
+        //sh "kubectl set image deployment/${servicename} ${servicename}=${registry}:${BUILD_NUMBER} --record"
         sh "keptn send event new-artifact --project=nginx-webserver --service=nginx-webserver --image=${registry} --tag=${BUILD_NUMBER}"
 
     }
