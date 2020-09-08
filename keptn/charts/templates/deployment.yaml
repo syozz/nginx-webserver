@@ -16,7 +16,6 @@ spec:
     metadata: 
       labels:
         app: nginx-webserver
-        ycshin: nginx
         app.kubernetes.io/name: {{ .Values.keptn.service }}
         app.kubernetes.io/instance: "{{ .Values.keptn.service }}-{{ .Values.keptn.deployment }}"
         app.kubernetes.io/component: api
