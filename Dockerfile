@@ -1,5 +1,4 @@
 FROM nginx:latest
 COPY . /usr/share/nginx/html
-
-EXPOSE 80
-EXPOSE 443
+COPY ./conf/nginx.conf /etc/nginx/
+EXPOSE 8080
