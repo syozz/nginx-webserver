@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: nginx-webserver
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - name: http
     port: 80
