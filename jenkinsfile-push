@@ -22,7 +22,7 @@ node {
         }
     }
     stage('Clean docker image') {
-        sh "docker rmi ${registry}"
+        sh "docker rmi ${registry}:${BUILD_NUMBER}"
     }
     stage('Deploy Pods to Kubernetes') {
         //sh "kubectl set image deployment/${servicename} ${servicename}=${registry}:${BUILD_NUMBER} --record"
