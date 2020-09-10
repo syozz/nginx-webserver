@@ -4,11 +4,10 @@ kind: Service
 metadata:
   name: nginx-webserver
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: http
     port: 80
     protocol: TCP
-    targetPort: 8080
   selector:
     app: nginx-webserver
