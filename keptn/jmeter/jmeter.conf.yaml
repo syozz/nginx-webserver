@@ -1,18 +1,39 @@
 ---
 spec_version: '0.1.0'
 workloads:
-  - teststrategy: functional
+  - teststrategy: performance_long
     vuser: 10
-    loopcount: 1
-    script: jmeter/load.jmx
+    loopcount: 2000
+    thinktime: 250
     acceptederrorrate: 1.0
-  - teststrategy: performance
+    script: jmeter/load.jmx
+  - teststrategy: performance_100
     vuser: 100
     loopcount: 10
-    script: jmeter/load.jmx
+    thinktime: 250
     acceptederrorrate: 1.0
-  - teststrategy: performance_light
+    script: jmeter/load.jmx
+  - teststrategy: performance_50
     vuser: 50
     loopcount: 10
-    script: jmeter/load.jmx
+    thinktime: 250
     acceptederrorrate: 1.0
+    script: jmeter/load.jmx
+  - teststrategy: performance_10
+    vuser: 50
+    loopcount: 10
+    thinktime: 250
+    acceptederrorrate: 1.0
+    script: jmeter/load.jmx
+  - teststrategy: performance
+    vuser: 10
+    loopcount: 100
+    thinktime: 250
+    acceptederrorrate: 1.0
+    script: jmeter/load.jmx
+  - teststrategy: functional
+    vuser: 1
+    loopcount: 10
+    thinktime: 250
+    acceptederrorrate: 1.0
+    script: jmeter/load.jmx

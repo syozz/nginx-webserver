@@ -91,9 +91,9 @@ import java.util;
 // -------------------------------------------------------------------------------------
 String LTN=JMeterUtils.getProperty(&quot;DT_LTN&quot;);
 if((LTN == null) || (LTN.length() == 0)) {
-	if(vars != null) {
-		LTN = vars.get(&quot;DT_LTN&quot;);
-	}
+        if(vars != null) {
+                LTN = vars.get(&quot;DT_LTN&quot;);
+        }
 }
 if(LTN == null) LTN = &quot;NoTestName&quot;;
 
