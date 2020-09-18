@@ -16,10 +16,10 @@
       - sli: throughput_svc
         pass:
           - criteria:
-            - ">10"
+            - ">10000"
         warning:
           - criteria:
-            - ">5"
+            - ">5000"
       - sli: error_rate_svc
         weight: 2
         pass:
