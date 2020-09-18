@@ -13,10 +13,10 @@
         warning:     # if the response time is below 800ms, the result should be a warning
           - criteria:
               - "<=800"
-      - sli: throughput_svc
-        pass:
-          - criteria:
-            - ">100"
+      #- sli: throughput_svc
+      #  pass:
+      #    - criteria:
+      #      - ">100"
       - sli: error_rate_svc
         weight: 2
         pass:
